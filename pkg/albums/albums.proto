@@ -1,0 +1,19 @@
+// ProductInfo.proto
+syntax = "proto3"; 
+package albums; 
+
+service Albums { 
+    rpc GetAlbums (Empty) returns (Album);
+}
+
+message Album { 
+    int32 id = 1; 
+    string name = 2;
+}
+
+message AlbumList{
+    repeated Album albums = 1;
+}
+
+message Empty {
+}
