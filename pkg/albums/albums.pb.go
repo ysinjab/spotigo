@@ -10,15 +10,15 @@ package albums
 
 import (
 	context "context"
-	reflect "reflect"
-	sync "sync"
-
 	proto "github.com/golang/protobuf/proto"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -176,17 +176,23 @@ var File_albums_proto protoreflect.FileDescriptor
 
 var file_albums_proto_rawDesc = []byte{
 	0x0a, 0x0c, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x06,
-	0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x22, 0x2b, 0x0a, 0x05, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x12,
+	0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x72, 0x73,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2b, 0x0a, 0x05, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x12,
 	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12,
 	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
 	0x61, 0x6d, 0x65, 0x22, 0x32, 0x0a, 0x09, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x4c, 0x69, 0x73, 0x74,
 	0x12, 0x25, 0x0a, 0x06, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
 	0x32, 0x0d, 0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x52,
 	0x06, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79,
-	0x32, 0x33, 0x0a, 0x06, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x12, 0x29, 0x0a, 0x09, 0x47, 0x65,
+	0x32, 0x6b, 0x0a, 0x06, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x12, 0x29, 0x0a, 0x09, 0x47, 0x65,
 	0x74, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x12, 0x0d, 0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73,
 	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0d, 0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e,
-	0x41, 0x6c, 0x62, 0x75, 0x6d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x41, 0x6c, 0x62, 0x75, 0x6d, 0x12, 0x36, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x62, 0x75,
+	0x6d, 0x12, 0x1b, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x1a, 0x0d,
+	0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -203,16 +209,19 @@ func file_albums_proto_rawDescGZIP() []byte {
 
 var file_albums_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_albums_proto_goTypes = []interface{}{
-	(*Album)(nil),     // 0: albums.Album
-	(*AlbumList)(nil), // 1: albums.AlbumList
-	(*Empty)(nil),     // 2: albums.Empty
+	(*Album)(nil),               // 0: albums.Album
+	(*AlbumList)(nil),           // 1: albums.AlbumList
+	(*Empty)(nil),               // 2: albums.Empty
+	(*wrappers.Int32Value)(nil), // 3: google.protobuf.Int32Value
 }
 var file_albums_proto_depIdxs = []int32{
 	0, // 0: albums.AlbumList.albums:type_name -> albums.Album
 	2, // 1: albums.Albums.GetAlbums:input_type -> albums.Empty
-	0, // 2: albums.Albums.GetAlbums:output_type -> albums.Album
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+	3, // 2: albums.Albums.GetAlbum:input_type -> google.protobuf.Int32Value
+	0, // 3: albums.Albums.GetAlbums:output_type -> albums.Album
+	0, // 4: albums.Albums.GetAlbum:output_type -> albums.Album
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -294,6 +303,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AlbumsClient interface {
 	GetAlbums(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Album, error)
+	GetAlbum(ctx context.Context, in *wrappers.Int32Value, opts ...grpc.CallOption) (*Album, error)
 }
 
 type albumsClient struct {
@@ -313,9 +323,19 @@ func (c *albumsClient) GetAlbums(ctx context.Context, in *Empty, opts ...grpc.Ca
 	return out, nil
 }
 
+func (c *albumsClient) GetAlbum(ctx context.Context, in *wrappers.Int32Value, opts ...grpc.CallOption) (*Album, error) {
+	out := new(Album)
+	err := c.cc.Invoke(ctx, "/albums.Albums/GetAlbum", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AlbumsServer is the server API for Albums service.
 type AlbumsServer interface {
 	GetAlbums(context.Context, *Empty) (*Album, error)
+	GetAlbum(context.Context, *wrappers.Int32Value) (*Album, error)
 }
 
 // UnimplementedAlbumsServer can be embedded to have forward compatible implementations.
@@ -324,6 +344,9 @@ type UnimplementedAlbumsServer struct {
 
 func (*UnimplementedAlbumsServer) GetAlbums(context.Context, *Empty) (*Album, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAlbums not implemented")
+}
+func (*UnimplementedAlbumsServer) GetAlbum(context.Context, *wrappers.Int32Value) (*Album, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAlbum not implemented")
 }
 
 func RegisterAlbumsServer(s *grpc.Server, srv AlbumsServer) {
@@ -348,6 +371,24 @@ func _Albums_GetAlbums_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Albums_GetAlbum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrappers.Int32Value)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlbumsServer).GetAlbum(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/albums.Albums/GetAlbum",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlbumsServer).GetAlbum(ctx, req.(*wrappers.Int32Value))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Albums_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "albums.Albums",
 	HandlerType: (*AlbumsServer)(nil),
@@ -355,6 +396,10 @@ var _Albums_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAlbums",
 			Handler:    _Albums_GetAlbums_Handler,
+		},
+		{
+			MethodName: "GetAlbum",
+			Handler:    _Albums_GetAlbum_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

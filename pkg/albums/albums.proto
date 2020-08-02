@@ -2,8 +2,13 @@
 syntax = "proto3"; 
 package albums; 
 
+// import "google/protobuf/int32value.proto";
+import "google/protobuf/wrappers.proto";
+
+
 service Albums { 
     rpc GetAlbums (Empty) returns (Album);
+    rpc GetAlbum(google.protobuf.Int32Value) returns (Album);
 }
 
 message Album { 
@@ -17,3 +22,6 @@ message AlbumList{
 
 message Empty {
 }
+
+
+

@@ -5,6 +5,8 @@ import (
 	"log"
 	"time"
 
+	"github.com/golang/protobuf/ptypes/wrappers"
+
 	pb "github.com/ysinjab/spotigo/pkg/albums"
 	grpc "google.golang.org/grpc"
 )
@@ -24,7 +26,7 @@ func main() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.GetAlbums(ctx, &pb.Empty{})
+	r, err := c.GetAlbum(ctx, &wrappers.Int32Value{Value: 1})
 	if err != nil {
 		log.Fatalf("could not get anything: %v", err)
 	}
