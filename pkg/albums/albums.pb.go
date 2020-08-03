@@ -11,7 +11,6 @@ package albums
 import (
 	context "context"
 	proto "github.com/golang/protobuf/proto"
-	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -87,6 +86,53 @@ func (x *Album) GetName() string {
 	return ""
 }
 
+type AlbumId struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *AlbumId) Reset() {
+	*x = AlbumId{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_albums_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AlbumId) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlbumId) ProtoMessage() {}
+
+func (x *AlbumId) ProtoReflect() protoreflect.Message {
+	mi := &file_albums_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlbumId.ProtoReflect.Descriptor instead.
+func (*AlbumId) Descriptor() ([]byte, []int) {
+	return file_albums_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *AlbumId) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
 type AlbumList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -98,7 +144,7 @@ type AlbumList struct {
 func (x *AlbumList) Reset() {
 	*x = AlbumList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_albums_proto_msgTypes[1]
+		mi := &file_albums_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -111,7 +157,7 @@ func (x *AlbumList) String() string {
 func (*AlbumList) ProtoMessage() {}
 
 func (x *AlbumList) ProtoReflect() protoreflect.Message {
-	mi := &file_albums_proto_msgTypes[1]
+	mi := &file_albums_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124,7 +170,7 @@ func (x *AlbumList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlbumList.ProtoReflect.Descriptor instead.
 func (*AlbumList) Descriptor() ([]byte, []int) {
-	return file_albums_proto_rawDescGZIP(), []int{1}
+	return file_albums_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AlbumList) GetAlbums() []*Album {
@@ -143,7 +189,7 @@ type Empty struct {
 func (x *Empty) Reset() {
 	*x = Empty{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_albums_proto_msgTypes[2]
+		mi := &file_albums_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -156,7 +202,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_albums_proto_msgTypes[2]
+	mi := &file_albums_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -169,30 +215,29 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_albums_proto_rawDescGZIP(), []int{2}
+	return file_albums_proto_rawDescGZIP(), []int{3}
 }
 
 var File_albums_proto protoreflect.FileDescriptor
 
 var file_albums_proto_rawDesc = []byte{
 	0x0a, 0x0c, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x06,
-	0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x72, 0x73,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2b, 0x0a, 0x05, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x12,
+	0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x22, 0x2b, 0x0a, 0x05, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x12,
 	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12,
 	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
-	0x61, 0x6d, 0x65, 0x22, 0x32, 0x0a, 0x09, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x4c, 0x69, 0x73, 0x74,
-	0x12, 0x25, 0x0a, 0x06, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x0d, 0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x52,
-	0x06, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79,
-	0x32, 0x6b, 0x0a, 0x06, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x12, 0x29, 0x0a, 0x09, 0x47, 0x65,
-	0x74, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x12, 0x0d, 0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73,
-	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0d, 0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e,
-	0x41, 0x6c, 0x62, 0x75, 0x6d, 0x12, 0x36, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x62, 0x75,
-	0x6d, 0x12, 0x1b, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2e, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x1a, 0x0d,
-	0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x6d, 0x65, 0x22, 0x19, 0x0a, 0x07, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x49, 0x64, 0x12, 0x0e,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x22, 0x32,
+	0x0a, 0x09, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x25, 0x0a, 0x06, 0x61,
+	0x6c, 0x62, 0x75, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x61, 0x6c,
+	0x62, 0x75, 0x6d, 0x73, 0x2e, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x52, 0x06, 0x61, 0x6c, 0x62, 0x75,
+	0x6d, 0x73, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x32, 0x5f, 0x0a, 0x06, 0x41,
+	0x6c, 0x62, 0x75, 0x6d, 0x73, 0x12, 0x29, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x62, 0x75,
+	0x6d, 0x73, 0x12, 0x0d, 0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x45, 0x6d, 0x70, 0x74,
+	0x79, 0x1a, 0x0d, 0x2e, 0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x41, 0x6c, 0x62, 0x75, 0x6d,
+	0x12, 0x2a, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x12, 0x0f, 0x2e, 0x61,
+	0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x49, 0x64, 0x1a, 0x0d, 0x2e,
+	0x61, 0x6c, 0x62, 0x75, 0x6d, 0x73, 0x2e, 0x41, 0x6c, 0x62, 0x75, 0x6d, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -207,17 +252,17 @@ func file_albums_proto_rawDescGZIP() []byte {
 	return file_albums_proto_rawDescData
 }
 
-var file_albums_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_albums_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_albums_proto_goTypes = []interface{}{
-	(*Album)(nil),               // 0: albums.Album
-	(*AlbumList)(nil),           // 1: albums.AlbumList
-	(*Empty)(nil),               // 2: albums.Empty
-	(*wrappers.Int32Value)(nil), // 3: google.protobuf.Int32Value
+	(*Album)(nil),     // 0: albums.Album
+	(*AlbumId)(nil),   // 1: albums.AlbumId
+	(*AlbumList)(nil), // 2: albums.AlbumList
+	(*Empty)(nil),     // 3: albums.Empty
 }
 var file_albums_proto_depIdxs = []int32{
 	0, // 0: albums.AlbumList.albums:type_name -> albums.Album
-	2, // 1: albums.Albums.GetAlbums:input_type -> albums.Empty
-	3, // 2: albums.Albums.GetAlbum:input_type -> google.protobuf.Int32Value
+	3, // 1: albums.Albums.GetAlbums:input_type -> albums.Empty
+	1, // 2: albums.Albums.GetAlbum:input_type -> albums.AlbumId
 	0, // 3: albums.Albums.GetAlbums:output_type -> albums.Album
 	0, // 4: albums.Albums.GetAlbum:output_type -> albums.Album
 	3, // [3:5] is the sub-list for method output_type
@@ -246,7 +291,7 @@ func file_albums_proto_init() {
 			}
 		}
 		file_albums_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AlbumList); i {
+			switch v := v.(*AlbumId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -258,6 +303,18 @@ func file_albums_proto_init() {
 			}
 		}
 		file_albums_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AlbumList); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_albums_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Empty); i {
 			case 0:
 				return &v.state
@@ -276,7 +333,7 @@ func file_albums_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_albums_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -303,7 +360,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AlbumsClient interface {
 	GetAlbums(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Album, error)
-	GetAlbum(ctx context.Context, in *wrappers.Int32Value, opts ...grpc.CallOption) (*Album, error)
+	GetAlbum(ctx context.Context, in *AlbumId, opts ...grpc.CallOption) (*Album, error)
 }
 
 type albumsClient struct {
@@ -323,7 +380,7 @@ func (c *albumsClient) GetAlbums(ctx context.Context, in *Empty, opts ...grpc.Ca
 	return out, nil
 }
 
-func (c *albumsClient) GetAlbum(ctx context.Context, in *wrappers.Int32Value, opts ...grpc.CallOption) (*Album, error) {
+func (c *albumsClient) GetAlbum(ctx context.Context, in *AlbumId, opts ...grpc.CallOption) (*Album, error) {
 	out := new(Album)
 	err := c.cc.Invoke(ctx, "/albums.Albums/GetAlbum", in, out, opts...)
 	if err != nil {
@@ -335,7 +392,7 @@ func (c *albumsClient) GetAlbum(ctx context.Context, in *wrappers.Int32Value, op
 // AlbumsServer is the server API for Albums service.
 type AlbumsServer interface {
 	GetAlbums(context.Context, *Empty) (*Album, error)
-	GetAlbum(context.Context, *wrappers.Int32Value) (*Album, error)
+	GetAlbum(context.Context, *AlbumId) (*Album, error)
 }
 
 // UnimplementedAlbumsServer can be embedded to have forward compatible implementations.
@@ -345,7 +402,7 @@ type UnimplementedAlbumsServer struct {
 func (*UnimplementedAlbumsServer) GetAlbums(context.Context, *Empty) (*Album, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAlbums not implemented")
 }
-func (*UnimplementedAlbumsServer) GetAlbum(context.Context, *wrappers.Int32Value) (*Album, error) {
+func (*UnimplementedAlbumsServer) GetAlbum(context.Context, *AlbumId) (*Album, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAlbum not implemented")
 }
 
@@ -372,7 +429,7 @@ func _Albums_GetAlbums_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _Albums_GetAlbum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrappers.Int32Value)
+	in := new(AlbumId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -384,7 +441,7 @@ func _Albums_GetAlbum_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: "/albums.Albums/GetAlbum",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlbumsServer).GetAlbum(ctx, req.(*wrappers.Int32Value))
+		return srv.(AlbumsServer).GetAlbum(ctx, req.(*AlbumId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
