@@ -24,7 +24,7 @@ func main() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.GetAlbum(ctx, &pb.AlbumId{Id: 2})
+	r, err := c.GetAlbum(ctx, &pb.AlbumId{Id: 1})
 	if err != nil {
 		log.Fatalf("could not get anything: %v", err)
 	}
