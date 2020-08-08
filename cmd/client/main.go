@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
@@ -24,9 +25,10 @@ func main() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.GetAlbum(ctx, &pb.AlbumId{Id: 1})
+	r, err := c.GetAlbums(ctx, &pb.Empty{})
 	if err != nil {
 		log.Fatalf("could not get anything: %v", err)
 	}
-	log.Printf(r.Name)
+	s := fmt.Sprintf("Total returned: %d", len(r.Albums))
+	log.Printf(s)
 }
