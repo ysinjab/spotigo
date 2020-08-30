@@ -16,7 +16,7 @@ type key int
 
 const (
 	secret           = "123"
-	tokenInfoKey key = iota
+	TokenInfoKey key = iota
 )
 
 func parseToken(token string) (jwt.MapClaims, error) {
@@ -68,7 +68,7 @@ func ValidateToken(ctx context.Context) (context.Context, error) {
 	}
 
 	grpc_ctxtags.Extract(ctx).Set("auth.sub", userClaimFromToken(tokenInfo))
-	newCtx := context.WithValue(ctx, tokenInfoKey, tokenInfo)
+	newCtx := context.WithValue(ctx, TokenInfoKey, tokenInfo)
 	return newCtx, nil
 }
 

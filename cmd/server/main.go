@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"fmt"
 	"log"
 	"net"
 	"time"
@@ -39,7 +40,32 @@ func (s *AlbumsServer) AuthFuncOverride(ctx context.Context, fullMethodName stri
 	return ctx, nil
 }
 
-func (s *AlbumsServer) GetAlbums(context.Context, *pb.Empty) (*pb.AlbumList, error) {
+func (s *AlbumsServer) GetAlbums(ctx context.Context, in *pb.Empty) (*pb.AlbumList, error) {
+	fmt.Println("****")
+	a := ctx.Value(auth.TokenInfoKey)
+	// v := reflect.ValueOf(a)
+
+	// for _, key := range v.MapKeys() {
+	// 	if string(key) == reflect.Value("sub") {
+	// 		fmt.Println("kry: %s", key.Kind())
+
+	// 	}
+	// 	// strct := v.MapIndex(key)
+	// 	// fmt.Println(key.Interface(), strct.Interface())
+	// }
+	// fmt.Printf("value: %v", v.MapIndex("sub"))
+
+	//2
+
+	v, ok := a.(map[string]string)
+	if !ok {
+		fmt.Printf("wwwwww: %s", ok)
+	}
+	for _, s := range v {
+		fmt.Printf("Value: %v\n", s)
+	}
+
+	fmt.Println("****")
 	as, err := s.Service.GetAlbums()
 	if err != nil {
 		return nil, err
