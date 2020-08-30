@@ -33,8 +33,6 @@ func parseToken(token string) (jwt.MapClaims, error) {
 
 	if parsedToken.Valid {
 		if claims, ok := parsedToken.Claims.(jwt.MapClaims); ok && parsedToken.Valid {
-			fmt.Println(claims)
-
 			return claims, nil
 		} else {
 			return nil, fmt.Errorf("invalid toke")

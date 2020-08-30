@@ -42,6 +42,7 @@ func (s *AlbumsServer) AuthFuncOverride(ctx context.Context, fullMethodName stri
 
 func (s *AlbumsServer) GetAlbums(ctx context.Context, in *pb.Empty) (*pb.AlbumList, error) {
 	fmt.Println("****")
+
 	a := ctx.Value(auth.TokenInfoKey)
 	// v := reflect.ValueOf(a)
 
@@ -56,15 +57,16 @@ func (s *AlbumsServer) GetAlbums(ctx context.Context, in *pb.Empty) (*pb.AlbumLi
 	// fmt.Printf("value: %v", v.MapIndex("sub"))
 
 	//2
+	convertedMap := map[string]interface{}{}
+	for key, value := range a.(jwt.MapClaims) {
+		if key == "sub" {
+			fmt.Print("wawa")
+		}
+		// fmt.Println(key)
 
-	v, ok := a.(map[string]string)
-	if !ok {
-		fmt.Printf("wwwwww: %s", ok)
+		convertedMap[key] = value.(float64)
 	}
-	for _, s := range v {
-		fmt.Printf("Value: %v\n", s)
-	}
-
+	fmt.Println(convertedMap)
 	fmt.Println("****")
 	as, err := s.Service.GetAlbums()
 	if err != nil {
